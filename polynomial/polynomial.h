@@ -1,11 +1,11 @@
 #pragma once
+#include "polynomialBase.h"
+#include <iostream>
 
-class polynomial
+class polynomial : public polynomialBase
 {
 private:
-	int deg;
 	double* cof;
-	char* tmp = new char[30];
 	void allocate();
 	void reallocate(int newSize);
 	char* readMonomial(char* str);
@@ -43,9 +43,9 @@ public:
 	polynomial operator/ (double num);
 
 	polynomial operator() (int num);
-	double operator[] (int num);
+	virtual double operator[] (int num);
 
 	friend std::ostream& operator<< (std::ostream& ostr, polynomial p);
-	friend std::istream& operator>> (std::istream& in, polynomial& p);
+	friend std::istream& operator>> (std::istream& in, polynomial &p);
 };
 

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "polynomial.h"
 
 
@@ -289,13 +288,13 @@ polynomial& polynomial::operator/=(const polynomial& p)
 	polynomial tmpMain = *this;
 	int tmpDeg = deg;
 	double tmpP = p.cof[0] * -1;
-	
+
 	cof[tmpDeg - 1] = tmpMain[tmpDeg];
 	tmpDeg--;
 
 	while (tmpDeg--)
 	{
-		cof[tmpDeg] = (cof[tmpDeg + 1] * tmpP) + tmpMain.cof[tmpDeg+1];
+		cof[tmpDeg] = (cof[tmpDeg + 1] * tmpP) + tmpMain.cof[tmpDeg + 1];
 	}
 
 	cof[deg] = 0;
