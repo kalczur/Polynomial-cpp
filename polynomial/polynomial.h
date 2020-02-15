@@ -19,6 +19,7 @@ public:
 	~polynomial();
 	void analyze(const char* str);
 	void print();
+	polynomial derivative(int num);
 
 	polynomial& operator=(const polynomial& p);
 
@@ -42,7 +43,7 @@ public:
 	polynomial operator/ (const polynomial& p);
 	polynomial operator/ (double num);
 
-	polynomial operator() (int num);
+	virtual double operator() (double num);
 	virtual double operator[] (int num);
 
 	friend std::ostream& operator<< (std::ostream& ostr, polynomial p);

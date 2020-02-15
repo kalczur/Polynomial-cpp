@@ -43,7 +43,13 @@ monomial::monomial(const char* str)
 	cof += sign * cof;
 }
 
-double monomial::operator[] (int num) {
+double monomial::operator()(double num) 
+{
+	return (cof * pow(num, deg));
+}
+
+double monomial::operator[] (int num) 
+{
 	if (num != deg)
 		return 0;
 	else

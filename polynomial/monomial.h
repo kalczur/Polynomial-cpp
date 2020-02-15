@@ -13,6 +13,7 @@ public:
 	monomial(double a, int b);
 	virtual double operator[] (int num);
 	int getDeg();
+	virtual double operator()(double num);
 
 	monomial& operator*= (const monomial& m);
 	monomial& operator*= (double num);

@@ -135,6 +135,29 @@ void polynomial::readMonomials(char* str)
 		str = readMonomial(str);
 
 }
+polynomial polynomial::derivative(int num)
+{
+	if (deg == 0)
+		return 0;
+
+	polynomial tmp = *this;
+	polynomial deriv(deg);
+
+	while (num--)
+	{
+		if (tmp.deg == 0)
+			return 0;
+
+		deriv.deg--;
+
+		for (int i = tmp.deg; i > 0; i--)
+			deriv.cof[i - 1] = tmp.cof[i] * i;
+
+		tmp = deriv;
+	}
+
+	return deriv;
+}
 //-------------------------------------
 //-------------constructors------------
 //-------------------------------------
@@ -328,28 +351,13 @@ double polynomial::operator[](int num)
 
 	return cof[num];
 }
-polynomial polynomial::operator()(int num)
+double polynomial::operator()(double num)
 {
-	if (deg == 0)
-		return 0;
+	double sum = 0;
+	for (int i = 0; i <= deg; i++)
+		sum += cof[i] * pow(num, i);
 
-	polynomial tmp = *this;
-	polynomial deriv(deg);
-
-	while (num--)
-	{
-		if (tmp.deg == 0)
-			return 0;
-
-		deriv.deg--;
-
-		for (int i = tmp.deg; i > 0; i--)
-			deriv.cof[i - 1] = tmp.cof[i] * i;
-
-		tmp = deriv;
-	}
-
-	return deriv;
+	return sum;
 }
 //----------------| << >> |----------------
 std::ostream& operator<<(std::ostream& out, polynomial p)
